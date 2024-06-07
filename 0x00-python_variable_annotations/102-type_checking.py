@@ -1,20 +1,28 @@
 #!/usr/bin/env python3
-""" Type Checking  """
-from typing import Tuple, Union, List
+"""
+Contains a function that returns  a list of integers
+multiplied by certain factor.
+"""
+from typing import Tuple, List
 
 
 def zoom_array(lst: Tuple, factor: int = 2) -> List:
-    """ Zoom Array """
-    zoomed_in: List[Union[int, float]] = [
+    """Returns a list of integers multiplied by certain factor.
+    Args:
+        lst: A tuple of integers.
+        factor: An integer.
+    Returns:
+        A list of integers.
+    """
+    zoomed_in: List = [
         item for item in lst
-        for _ in range(factor)
+        for i in range(factor)
     ]
     return zoomed_in
 
 
-array = (12, 72, 91)
+array: Tuple = (12, 72, 91)
 
 zoom_2x = zoom_array(array)
 
-# If you want to allow for a float as a factor, change the annotation to factor: Union[int, float]
-zoom_3x = zoom_array(array, int(3.0))
+zoom_3x = zoom_array(array, 3)
