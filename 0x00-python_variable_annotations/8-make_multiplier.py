@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
-""" Complex types - functions"""
+"""Contains a function that multiplies a float by multiplier"""
 from typing import Callable
 
 
 def make_multiplier(multiplier: float) -> Callable[[float], float]:
-    """ returns arguments as a function that multiplies a float by multiplier """
-    def inner_function(n: float) -> float:
-        """ multiplies a float by multiplier """
-        return float(n * multiplier)
+    """Multiplies a float by multiplier
+    Args:
+        multiplier (float): The multiplier
+    Returns:
+        A function that multiplies a float by multiplier
+    """
 
-    return inner_function
+    def multiplier_func(number: float) -> float:
+        """Multiplies a float by multiplier"""
+        return multiplier * number
+
+    return multiplier_func
