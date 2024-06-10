@@ -1,24 +1,22 @@
 #!/usr/bin/env python3
-""" The basics of async """
-
+"""
+Curriculum
+Short Specializations
+Average: 118.3%
+0x01. Python - Async """
 from typing import List
-from heapq import heappush
 
-task_wait_random = __import__('3-tasks').task_wait_random
+task_wait_random = __import__("3-tasks").task_wait_random
 
 
 async def task_wait_n(n: int, max_delay: int) -> List[float]:
-    """
-    Asynchronous routine that spawns task_wait_random n times with the specified max_delay.
+    """Let's execute multiple coroutines at the same time with async"""
+    arr: List[float] = []
+    for i in range(n):
+        arr.append(await task_wait_random(max_delay))
+    for i in range(len(arr)):
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
 
-    Parameters:
-    n (int): Number of times to spawn task_wait_random.
-    max_delay (int): Maximum delay in seconds for task_wait_random.
-
-    Returns:
-    List[float]: List of all the delays in ascending order.
-    """
-    heap = []
-    for _ in range(n):
-        heappush(heap, await task_wait_random(max_delay))
-    return list(heap)
+    return arr

@@ -1,22 +1,13 @@
 #!/usr/bin/env python3
-'''
-    The basics of async.
-'''
+"""Average: 118.3% 0x01. Python - Async """
 
-import asyncio
+
 import random
+import asyncio
 
 
 async def wait_random(max_delay: int = 10) -> float:
-    """
-    Asynchronous coroutine that waits for a random delay and returns it.
-
-    Parameters:
-    max_delay (int): Maximum delay in seconds. Default is 10.
-
-    Returns:
-    float: Random delay between 0 and max_delay seconds.
-    """
-    delay = random.uniform(0, max_delay)
-    await asyncio.sleep(delay)
-    return delay
+    """0. The basics of async"""
+    num = random.uniform(0, max_delay)
+    await asyncio.sleep(num)
+    return num

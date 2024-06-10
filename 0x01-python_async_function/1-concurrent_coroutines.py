@@ -1,25 +1,19 @@
 #!/usr/bin/env python3
-""" The basics of async """
+"""0x01. Python - Async """
 
-import asyncio
 from typing import List
-from heapq import heappush
-
-wait_random = __import__('0-basic_async_syntax').wait_random
+wait_random = __import__("0-basic_async_syntax").wait_random
 
 
 async def wait_n(n: int, max_delay: int) -> List[float]:
-    """
-    Asynchronous routine that spawns wait_random n times with the specified max_delay.
+    """Let's execute multiple coroutines at the same time with async"""
+    arr = []
+    for i in range(n):
+        random_number = await wait_random(max_delay)
+        arr.append(random_number)
+    for i in range(len(arr)):
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
 
-    Parameters:
-    n (int): Number of times to spawn wait_random.
-    max_delay (int): Maximum delay in seconds for wait_random.
-
-    Returns:
-    List[float]: List of all the delays in ascending order.
-    """
-    heap = []
-    for _ in range(n):
-        heappush(heap, await wait_random(max_delay))
-        return list(heap)
+    return arr
